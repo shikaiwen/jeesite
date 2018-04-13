@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>单表管理</title>
+	<title>策划死管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,10 +27,10 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/test/myTestData/">单表列表</a></li>
-		<li class="active"><a href="${ctx}/test/myTestData/form?id=${myTestData.id}">单表<shiro:hasPermission name="test:myTestData:edit">${not empty myTestData.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="test:myTestData:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/dtest/myTestData/">策划死列表</a></li>
+		<li class="active"><a href="${ctx}/dtest/myTestData/form?id=${myTestData.id}">策划死<shiro:hasPermission name="dtest:myTestData:edit">${not empty myTestData.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="dtest:myTestData:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="myTestData" action="${ctx}/test/myTestData/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="myTestData" action="${ctx}/dtest/myTestData/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
@@ -63,7 +63,7 @@
 		<div class="control-group">
 			<label class="control-label">性别：</label>
 			<div class="controls">
-				<form:radiobuttons path="sex" items="${fns:getDictList('sex')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
+				<form:input path="sex" htmlEscape="false" maxlength="1" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="test:myTestData:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+			<shiro:hasPermission name="dtest:myTestData:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

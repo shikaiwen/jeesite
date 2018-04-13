@@ -18,23 +18,23 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/test/testData/">单表列表</a></li>
-		<shiro:hasPermission name="test:testData:edit"><li><a href="${ctx}/test/testData/form">单表添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/test/myTestData/">单表列表</a></li>
+		<shiro:hasPermission name="test:myTestData:edit"><li><a href="${ctx}/test/myTestData/form">单表添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="testData" action="${ctx}/test/testData/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="myTestData" action="${ctx}/test/myTestData/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>归属用户：</label>
-				<sys:treeselect id="user" name="user.id" value="${testData.user.id}" labelName="user.name" labelValue="${testData.user.name}"
+				<sys:treeselect id="user" name="user.id" value="${myTestData.user.id}" labelName="user.name" labelValue="${myTestData.user.name}"
 					title="用户" url="/sys/office/treeData?type=3" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li><label>归属部门：</label>
-				<sys:treeselect id="office" name="office.id" value="${testData.office.id}" labelName="office.name" labelValue="${testData.office.name}"
+				<sys:treeselect id="office" name="office.id" value="${myTestData.office.id}" labelName="office.name" labelValue="${myTestData.office.name}"
 					title="部门" url="/sys/office/treeData?type=2" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li><label>归属区域：</label>
-				<sys:treeselect id="area" name="area.id" value="${testData.area.id}" labelName="area.name" labelValue="${testData.area.name}"
+				<sys:treeselect id="area" name="area.id" value="${myTestData.area.id}" labelName="area.name" labelValue="${myTestData.area.name}"
 					title="区域" url="/sys/area/treeData" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
 			</li>
 			<li><label>名称：</label>
@@ -45,10 +45,10 @@
 			</li>
 			<li><label>加入日期：</label>
 				<input name="beginInDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${testData.beginInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					value="<fmt:formatDate value="${myTestData.beginInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
 				<input name="endInDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${testData.endInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					value="<fmt:formatDate value="${myTestData.endInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -66,36 +66,36 @@
 				<th>性别</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
-				<shiro:hasPermission name="test:testData:edit"><th>操作</th></shiro:hasPermission>
+				<shiro:hasPermission name="test:myTestData:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="testData">
+		<c:forEach items="${page.list}" var="myTestData">
 			<tr>
-				<td><a href="${ctx}/test/testData/form?id=${testData.id}">
-					${testData.user.name}
+				<td><a href="${ctx}/test/myTestData/form?id=${myTestData.id}">
+					${myTestData.user.name}
 				</a></td>
 				<td>
-					${testData.office.name}
+					${myTestData.office.name}
 				</td>
 				<td>
-					${testData.area.name}
+					${myTestData.area.name}
 				</td>
 				<td>
-					${testData.name}
+					${myTestData.name}
 				</td>
 				<td>
-					${fns:getDictLabel(testData.sex, 'sex', '')}
+					${fns:getDictLabel(myTestData.sex, 'sex', '')}
 				</td>
 				<td>
-					<fmt:formatDate value="${testData.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${myTestData.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
-					${testData.remarks}
+					${myTestData.remarks}
 				</td>
-				<shiro:hasPermission name="test:testData:edit"><td>
-    				<a href="${ctx}/test/testData/form?id=${testData.id}">修改</a>
-					<a href="${ctx}/test/testData/delete?id=${testData.id}" onclick="return confirmx('确认要删除该单表吗？', this.href)">删除</a>
+				<shiro:hasPermission name="test:myTestData:edit"><td>
+    				<a href="${ctx}/test/myTestData/form?id=${myTestData.id}">修改</a>
+					<a href="${ctx}/test/myTestData/delete?id=${myTestData.id}" onclick="return confirmx('确认要删除该单表吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
